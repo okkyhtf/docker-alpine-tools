@@ -1,2 +1,2 @@
-# docker-alpine-tools
+# docker-tools
 Docker image consists of tools for debugging in containerized platform
