@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.7
+FROM docker.io/library/alpine:3.8
 LABEL maintainer="Okky Hendriansyah <okky.htf@gmail.com>"
 USER root
 RUN true \
@@ -6,4 +6,4 @@ RUN true \
  && chmod u+s /bin/busybox \
  && chmod u+s /bin/busybox-extras \
  && true
-CMD ["top"]
+CMD ["top", "-d", "65535"]
