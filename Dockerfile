@@ -3,7 +3,7 @@ LABEL maintainer="Okky Hendriansyah <okky.htf@gmail.com>"
 USER root
 RUN true \
  && set -xe \
- && apk add --no-cache openssh-client tcpdump busybox-extras bind-tools \
+ && apk add --no-cache openssh-client tcpdump busybox-extras bind-tools curl \
  && chmod u+s /bin/busybox \
  && chmod u+s /bin/busybox-extras \
  && true
