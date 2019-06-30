@@ -16,10 +16,11 @@ RUN true \
  && rm -rf fio \
  && apk del --no-cache make alpine-sdk zlib-dev libaio-dev linux-headers coreutils \
  && apk add --no-cache python py-pip py-setuptools libmagic \
+ && pip install python-dateutil \
  && mkdir -p /opt \
  && wget https://github.com/s3tools/s3cmd/releases/download/v2.0.2/s3cmd-2.0.2.zip \
  && unzip s3cmd-2.0.2.zip -d /opt/ \
  && rm s3cmd-2.0.2.zip \
- && ln -s /opt/s3cmd/s3cmd-2.0.2/s3cmd /usr/local/bin/s3cmd \
+ && ln -s /opt/s3cmd-2.0.2/s3cmd /usr/local/bin/s3cmd \
  && true
 CMD ["top", "-d", "65535"]
