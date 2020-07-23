@@ -1,26 +1,19 @@
 FROM docker.io/library/alpine:3.12
 LABEL maintainer="Okky Hendriansyah <okky.htf@gmail.com>"
+ENV S3CMD_VERSION=2.1.0
 USER root
 RUN true \
  && set -xe \
  && apk add --no-cache openssh-client tcpdump busybox-extras bind-tools ca-certificates curl \
  && chmod u+s /bin/busybox \
  && chmod u+s /bin/busybox-extras \
- && apk --no-cache add make alpine-sdk zlib-dev libaio-dev linux-headers coreutils libaio \
- && git clone https://github.com/axboe/fio \
- && cd fio \
- && ./configure \
- && make -j`nproc` \
- && make install \
- && cd .. \
- && rm -rf fio \
- && apk del --no-cache make alpine-sdk zlib-dev linux-headers coreutils \
+ && apk add --no-cache fio libaio-dev \
  && apk add --no-cache python py-pip py-setuptools libmagic \
  && pip install python-dateutil \
  && mkdir -p /opt \
- && wget https://github.com/s3tools/s3cmd/releases/download/v2.0.2/s3cmd-2.0.2.zip \
- && unzip s3cmd-2.0.2.zip -d /opt/ \
- && rm s3cmd-2.0.2.zip \
- && ln -s /opt/s3cmd-2.0.2/s3cmd /usr/local/bin/s3cmd \
+ && wget https://github.com/s3tools/s3cmd/releases/download/v${S3CMD_VERSION}/s3cmd-${S3CMD_VERSION}.zip \
+ && unzip s3cmd-${S3CMD_VERSION}.zip -d /opt/ \
+ && rm s3cmd-${S3CMD_VERSION}.zip \
+ && ln -s /opt/s3cmd-${S3CMD_VERSION}/s3cmd /usr/local/bin/s3cmd \
  && true
 CMD ["top", "-d", "65535"]
