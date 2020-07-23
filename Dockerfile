@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.10
+FROM docker.io/library/alpine:3.12
 LABEL maintainer="Okky Hendriansyah <okky.htf@gmail.com>"
 USER root
 RUN true \
@@ -14,7 +14,7 @@ RUN true \
  && make install \
  && cd .. \
  && rm -rf fio \
- && apk del --no-cache make alpine-sdk zlib-dev libaio-dev linux-headers coreutils \
+ && apk del --no-cache make alpine-sdk zlib-dev linux-headers coreutils \
  && apk add --no-cache python py-pip py-setuptools libmagic \
  && pip install python-dateutil \
  && mkdir -p /opt \
