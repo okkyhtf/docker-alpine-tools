@@ -7,6 +7,6 @@ RUN true \
  && apk add --no-cache openssh-client tcpdump busybox-extras bind-tools ca-certificates curl \
  && chmod u+s /bin/busybox \
  && chmod u+s /bin/busybox-extras \
- && apk add --no-cache fio libaio-dev \
+ && apk add --no-cache fio libaio-dev hping3 \
  && true
 CMD ["top", "-d", "65535"]
