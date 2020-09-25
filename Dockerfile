@@ -14,7 +14,7 @@ RUN true \
  && set -xe \
  && wget -c https://github.com/rclone/rclone/releases/download/${RCLONE_VERSION}/rclone-${RCLONE_VERSION}-linux-amd64.zip \
  && unzip rclone-${RCLONE_VERSION}-linux-amd64.zip \
- && cd -${RCLONE_VERSION}-linux-amd64 \
+ && cd rclone-${RCLONE_VERSION}-linux-amd64 \
  && cp rclone /usr/bin/ \
  && chown root:root /usr/bin/rclone \
  && chmod 755 /usr/bin/rclone \
