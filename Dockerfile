@@ -18,9 +18,6 @@ RUN true \
  && cp rclone /usr/bin/ \
  && chown root:root /usr/bin/rclone \
  && chmod 755 /usr/bin/rclone \
- && mkdir -p /usr/share/man/man1 \
- && cp rclone.1 /usr/share/man/man1/ \
- && makewhatis /usr/share/man \
  && rm -rf rclone-${RCLONE_VERSION}-linux-amd64* \
  && true
 CMD ["top", "-d", "65535"]
