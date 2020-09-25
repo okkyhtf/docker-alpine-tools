@@ -1,6 +1,6 @@
 FROM docker.io/library/alpine:3.12
 LABEL maintainer="Okky Hendriansyah <okky.htf@gmail.com>"
-ENV S3CMD_VERSION=2.1.0
+ENV RCLONE_VERSION=v1.53.1
 USER root
 RUN true \
  && set -xe \
@@ -8,6 +8,21 @@ RUN true \
  && chmod u+s /bin/busybox \
  && chmod u+s /bin/busybox-extras \
  && apk add --no-cache fio libaio-dev \
+ && apk add --no-cache iperf iperf3 \
  && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing hping3 \
+ && setcap cap_net_raw+ep /usr/sbin/hping3 \
+ && true
+RUN true \
+ && set -xe \
+ && curl -O https://github.com/rclone/rclone/releases/download/${RCLONE_VERSION}/rclone-${RCLONE_VERSION}-linux-amd64.zip \
+ && unzip rclone-${RCLONE_VERSION}-linux-amd64.zip \
+ && cd -${RCLONE_VERSION}-linux-amd64 \
+ && cp rclone /usr/bin/ \
+ && chown root:root /usr/bin/rclone \
+ && chmod 755 /usr/bin/rclone \
+ && mkdir -p /usr/share/man/man1 \
+ && cp rclone.1 /usr/share/man/man1/ \
+ && makewhatis /usr/share/man \
+ && rm -rf rclone-${RCLONE_VERSION}-linux-amd64* \
  && true
 CMD ["top", "-d", "65535"]
