@@ -4,11 +4,9 @@ ENV RCLONE_VERSION=v1.53.1
 USER root
 RUN true \
  && set -xe \
- && apk add --no-cache openssh-client tcpdump busybox-extras bind-tools ca-certificates curl \
+ && apk add --no-cache openssh-client tcpdump busybox-extras bind-tools ca-certificates curl fio libaio-dev iperf iperf3 libcap \
  && chmod u+s /bin/busybox \
  && chmod u+s /bin/busybox-extras \
- && apk add --no-cache fio libaio-dev \
- && apk add --no-cache iperf iperf3 \
  && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing hping3 \
  && setcap cap_net_raw+ep /usr/sbin/hping3 \
  && true
