@@ -12,7 +12,7 @@ RUN true \
  && true
 RUN true \
  && set -xe \
- && curl -O https://github.com/rclone/rclone/releases/download/${RCLONE_VERSION}/rclone-${RCLONE_VERSION}-linux-amd64.zip \
+ && wget -c https://github.com/rclone/rclone/releases/download/${RCLONE_VERSION}/rclone-${RCLONE_VERSION}-linux-amd64.zip \
  && unzip rclone-${RCLONE_VERSION}-linux-amd64.zip \
  && cd -${RCLONE_VERSION}-linux-amd64 \
  && cp rclone /usr/bin/ \
